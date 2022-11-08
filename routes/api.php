@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
         'autor' => AutorController::class,
         'conteudo' => ConteudoController::class
     ]);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 
