@@ -34,9 +34,9 @@ class AutorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($autor)
     {
-        return Autore::findOrFail($id);
+        return Autore::findOrFail($autor);
     }
 
     /**
@@ -46,9 +46,9 @@ class AutorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $autor)
     {
-        $autor = Autore::findOrFail($id);
+        $autor = Autore::findOrFail($autor);
 
         $autor->update($request->all());
 
@@ -61,8 +61,8 @@ class AutorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($autor)
     {
-        return Autore::destroy($id);
+        return Autore::destroy($autor);
     }
 }

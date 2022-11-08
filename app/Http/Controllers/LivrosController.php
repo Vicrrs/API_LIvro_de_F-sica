@@ -35,9 +35,9 @@ class LivrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($livros)
     {
-        return Livros_de_fisica::findOrFail($id);
+        return Livros_de_fisica::findOrFail($livros);
     }
 
     /**
@@ -47,9 +47,9 @@ class LivrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $livros)
     {
-        $Livro = Livros_de_fisica::findOrFail($id);
+        $Livro = Livros_de_fisica::findOrFail($livros);
 
         $Livro->update($request->all());
 
@@ -62,8 +62,8 @@ class LivrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($livros)
     {
-        return Livros_de_fisica::destroy($id);
+        return Livros_de_fisica::destroy($livros);
     }
 }

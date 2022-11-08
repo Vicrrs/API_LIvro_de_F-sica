@@ -34,9 +34,9 @@ class ConteudoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($conteudo)
     {
-        return Conteudo::findOrFail($id);
+        return Conteudo::findOrFail($conteudo);
     }
 
     /**
@@ -46,9 +46,9 @@ class ConteudoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $conteudo)
     {
-        $conteudo = Conteudo::findOrFail($id);
+        $conteudo = Conteudo::findOrFail($conteudo);
 
         $conteudo->update($request->all());
 
@@ -61,8 +61,8 @@ class ConteudoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($conteudo)
     {
-        return Conteudo::destroy($id);
+        return Conteudo::destroy($conteudo);
     }
 }
