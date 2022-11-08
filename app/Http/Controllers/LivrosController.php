@@ -7,63 +7,61 @@ use Illuminate\Http\Request;
 
 class LivrosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return Livros_de_fisica::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         // dd('teste');
-        return Livros_de_fisica::create($request->all());
+        if (Livros_de_fisica::create($request->all())) {
+            return response()->json([
+                'message' => 'Livro cadastrado com sucesso'
+            ], 201);
+        }
+        return response()->json([
+            'message' => 'Erro ao cadastrar o Livro'
+        ], 404);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($livros)
     {
-        return Livros_de_fisica::findOrFail($livros);
+        $livros = Livros_de_fisica::find($livros);
+        if ($livros) {
+            return $livros;
+        }
+        return response()->json([
+            'message' => 'Erro ao pesquisar o livro'
+        ], 404);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $livros)
     {
         $Livro = Livros_de_fisica::findOrFail($livros);
-
-        $Livro->update($request->all());
-
-        return $Livro;
+        if ($Livro) {
+            $Livro->update($request->all());
+            return $Livro;
+        }
+        return response()->json([
+            'message' => 'Erro ao atualizar o Livro'
+        ], 404);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($livros)
     {
-        return Livros_de_fisica::destroy($livros);
+        if (Livros_de_fisica::destroy($livros)) {
+            return response()->json([
+                'message' => 'Livro deletado com sucesso'
+            ], 201);
+        }
+        return response()->json([
+            'message' => 'Erro ao deletar o Livro'
+        ], 404);
     }
 }
