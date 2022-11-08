@@ -18,18 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-// agora usando resource no plural
-Route::apiResources([
-    'livro' => LivrosController::class,
-    'autor' => AutorController::class,
-    'conteudo' => ConteudoController::class
-]);
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    // agora usando resource no plural
+    Route::apiResources([
+        'livro' => LivrosController::class,
+        'autor' => AutorController::class,
+        'conteudo' => ConteudoController::class
+    ]);
 });
+
 
 Route::post('/register', [AuthController::class, 'register']);
 
