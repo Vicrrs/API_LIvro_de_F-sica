@@ -10,4 +10,10 @@ class Livros_de_fisica extends Model
     use HasFactory;
 
     protected $fillable = ['nome'];
+
+    // Pegar todos os autores vinculados
+    public function autores()
+    {
+        return $this->hasMany(Autore::class);
+    }
 }

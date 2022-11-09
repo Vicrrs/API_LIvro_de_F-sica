@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class LivrosController extends Controller
 {
-    
+
     public function index()
     {
         return Livros_de_fisica::all();
@@ -27,19 +27,23 @@ class LivrosController extends Controller
         ], 404);
     }
 
-    
+
     public function show($livros)
     {
         $livros = Livros_de_fisica::find($livros);
         if ($livros) {
-            return $livros;
+            $response = [
+                'livros' => $livros,
+                'autor' => $livros->autores
+            ];
+            return $response;
         }
         return response()->json([
             'message' => 'Erro ao pesquisar o livro'
         ], 404);
     }
 
-    
+
     public function update(Request $request, $livros)
     {
         $Livro = Livros_de_fisica::findOrFail($livros);
@@ -52,7 +56,7 @@ class LivrosController extends Controller
         ], 404);
     }
 
-    
+
     public function destroy($livros)
     {
         if (Livros_de_fisica::destroy($livros)) {
