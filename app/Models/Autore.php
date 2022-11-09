@@ -17,4 +17,10 @@ class Autore extends Model
     {
         return $this->belongsTo(Livros_de_fisica::class);
     }
+
+    // Pega os autores
+    public function conteudos()
+    {
+        return $this->hasMany(Conteudo::class);
+    }
 }
